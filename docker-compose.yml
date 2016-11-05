@@ -1,0 +1,14 @@
+rethink-music: # DB container
+  image: rethinkdb:2.3.5 # Get current latest rethinkdb release
+  ports: # Expose admin tool and tcp
+    - "8080:8080"
+    - "28015:28015"
+hapi-api: # API container
+  build: music-api/. # Path to the Dockerfile
+  command: npm start # The desired command to run at docker-compose up
+  volumes: # Link our volumes path_to_host_files:path_to_container
+    - ./music-api:/usr/src/app
+  ports: # Expose the API listening port
+    - "3000:3000"
+  links: # Create a link between this container and our db container
+    - rethink-music

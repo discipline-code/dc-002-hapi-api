@@ -1,0 +1,23 @@
+{
+  "name": "music-api",
+  "version": "0.0.1",
+  "description": "music api with hapijs",
+  "main": "index.js",
+  "dependencies": {
+    "boom": "^4.0.0",
+    "hapi": "^15.0.3",
+    "rethinkdb": "^2.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "hapijs",
+    "api",
+    "music"
+  ],
+  "author": "Omar Eduardo Torres <torres.omar.eduardo@gmail.com> (http://dataquito.org)",
+  "license": "MIT"
+}
