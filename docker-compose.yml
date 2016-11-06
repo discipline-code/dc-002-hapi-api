@@ -1,6 +1,6 @@
 rethink-music: # DB container
-  image: rethinkdb:2.3.5 # Get current latest rethinkdb release
-  ports: # Expose admin tool and tcp
+  image: rethinkdb:2.3.5 # Get latest rethinkdb release
+  ports: # Expose rethinkdb admin tool and tcp
     - "8080:8080"
     - "28015:28015"
 hapi-api: # API container

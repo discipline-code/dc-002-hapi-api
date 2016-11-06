@@ -36,6 +36,7 @@ server.register(plugins, (err) => {
     console.log(err);
     throw err;
   }
+  // For testing purposes only
   server.route({
     method: 'GET',
     path: '/test',
