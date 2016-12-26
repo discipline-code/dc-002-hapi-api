@@ -19,6 +19,9 @@ const plugins = [
       port: process.env.RETHINK_MUSIC_PORT_28015_TCP_PORT,
       database: 'music_store'
     }
+  },
+  {
+    register: require('./plugins/music-api')
   }
 ];
 

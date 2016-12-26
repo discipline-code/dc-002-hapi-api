@@ -1,0 +1,14 @@
+{
+  "title": "Operation: Doomsday",
+  "genre": "Hip Hop",
+  "style": "Conscious",
+  "year": 1999,
+  "rating": 4.66,
+  "tracklist": [
+    {
+      "number": 1,
+      "title": "The Time We Faced Doom (Skit)",
+      "length": 2.04
+    }
+  ]
+}

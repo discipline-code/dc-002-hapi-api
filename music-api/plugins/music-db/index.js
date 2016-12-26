@@ -1,6 +1,7 @@
 'use strict';
 
 const r = require('rethinkdb');
+const seed = require('./seed');
 
 const createDB = dbExists => {
   return r.branch(
@@ -16,6 +17,10 @@ const createTable = tableExists => {
     { tables_created: 0 },
     r.db('music_store').tableCreate('vinyls')
   );
+};
+
+const seedTable = a => {
+  console.log(a);
 };
 
 exports.register = function (server, options, next) {
@@ -34,14 +39,36 @@ exports.register = function (server, options, next) {
         .do(createDB)
         .run(conn)
         .then(dbExists => {
-          console.log(dbExists);
-          return r.db('music_store').tableList().contains('vinyls')
-          .do(createTable) 
-          .run(conn);
+          return r.db('music_store').tableList()
+            .contains('vinyls')
+            .do(createTable) 
+            .run(conn);
         })
         .then(tableExists => {
-          console.log(tableExists);
+          return r.db('music_store')
+            .table('vinyls')
+            .run(conn)
+            .then(cursor => cursor.toArray())
+            .then(results => results.length);
+        })
+        .then(tableEmpty => {
+          if(!!!tableEmpty) {
+            console.log('seeding database...');
+            return r.db('music_store') // Specify db
+              .table('vinyls')  // Specify table
+              .insert(seed)    // Specify records
+              .run(conn)  // Run query with server connection
+          } else {
+            return [];
+          }
+        })
+        .then(() => {
           server.app.rConnection = conn;
+          console.log('Connection object created');
+        })
+        .catch(err => {
+          console.log('There seems to be an error with db startup :(');
+          console.log(err);
         });
     }
     next();
