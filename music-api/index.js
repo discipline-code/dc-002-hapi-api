@@ -15,7 +15,7 @@ const plugins = [
   {
     register: require('./plugins/music-db'),
     options: {
-      host: process.env.RETHINK_MUSIC_PORT_28015_TCP_ADDR,
+      host: 'db',
       port: process.env.RETHINK_MUSIC_PORT_28015_TCP_PORT,
       database: 'music_store'
     }
